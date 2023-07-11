@@ -26,6 +26,12 @@
 
 </project>
 ```
+## 기능(https://fakestoreapi.com/)
+<img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008">
+
+
+
+
 
 1. ERD 설계
 
