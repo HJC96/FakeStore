@@ -37,6 +37,7 @@
 1. ERD 설계
 
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4">
+<img width="701" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/e47d1833-abb9-402f-8d25-cb38a38e657d">
 
 
 1. domain 작성
