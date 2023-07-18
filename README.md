@@ -1,4 +1,4 @@
-<img width="698" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/59baf526-6cab-40fc-9072-1bec4a3ae33d"># API 서버를 만들면서 기록한 내용들 입니다.
+# API 서버를 만들면서 기록한 내용들 입니다.
 
 - 개발언어: 자바
 - IDE: IntellJ(Community Edition)
@@ -38,7 +38,7 @@
 
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4">
 <img width="698" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/899a5fe6-3b0b-4cbb-b1dc-17bb3a977d0c">
-
+<img width="698" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/59baf526-6cab-40fc-9072-1bec4a3ae33d">
 
 
 1. domain 작성
