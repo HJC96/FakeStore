@@ -42,4 +42,5 @@ public class Product {
     @Embedded
     @Column(name = "RATING")
     private Rating rating;
+
 }

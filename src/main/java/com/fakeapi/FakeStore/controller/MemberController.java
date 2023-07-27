@@ -42,14 +42,14 @@ public class MemberController {
 
         Member saveMember = memberService.addMember(memberSignUpDTO);
 
-        MemberSignUpResponseDTO memberSignupResponse = new MemberSignUpResponseDTO();
-        memberSignupResponse.setMemberId(saveMember.getId());
-        memberSignupResponse.setName(saveMember.getName());
-        memberSignupResponse.setRegdate(saveMember.getDate());
-        memberSignupResponse.setEmail(saveMember.getEmail());
+        MemberSignUpResponseDTO memberSignupResponseDTO = new MemberSignUpResponseDTO();
+        memberSignupResponseDTO.setMemberId(saveMember.getId());
+        memberSignupResponseDTO.setName(saveMember.getName());
+        memberSignupResponseDTO.setRegdate(saveMember.getDate());
+        memberSignupResponseDTO.setEmail(saveMember.getEmail());
 
         // 회원가입
-        return new ResponseEntity(memberSignupResponse, HttpStatus.CREATED);
+        return new ResponseEntity(memberSignupResponseDTO, HttpStatus.CREATED);
     }
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid MemberLoginDTO memberLoginDTO, BindingResult bindingResult) {
@@ -121,6 +121,4 @@ public class MemberController {
                 .build();
         return new ResponseEntity(memberLoginResponseDTO, HttpStatus.OK);
     }
-
-
 }

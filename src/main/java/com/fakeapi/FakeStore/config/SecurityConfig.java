@@ -33,12 +33,13 @@ public class SecurityConfig {
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.disable())
                 .csrf(csrf -> csrf.disable())
-                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()))
+//                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()))
                 .httpBasic(httpSecurityHttpBasicConfigurer -> httpSecurityHttpBasicConfigurer.disable())
                 .authorizeHttpRequests(httpRequests -> httpRequests
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll() // Preflight 요청은 허용한다. https://velog.io/@jijang/%EC%82%AC%EC%A0%84-%EC%9A%94%EC%B2%AD-Preflight-request
                         .mvcMatchers( "/members/signup", "/members/login", "/members/refreshToken").permitAll()
                         .mvcMatchers(GET, "/categories/**", "/products/**").permitAll()
+                        .mvcMatchers(GET, "/carts/**").permitAll()
                         .mvcMatchers(GET,"/**").hasAnyRole( "USER")
                         .mvcMatchers(POST,"/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().hasAnyRole("USER", "ADMIN"))
@@ -49,18 +50,18 @@ public class SecurityConfig {
     }
 
     // <<Advanced>> Security Cors로 변경 시도
-    public CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        // config.setAllowCredentials(true); // 이거 빼면 된다
-        // https://gareen.tistory.com/66
-        config.addAllowedOrigin("*");
-        config.addAllowedMethod("*");
-        config.setAllowedMethods(List.of("GET","POST","DELETE","PATCH","OPTION","PUT"));
-        source.registerCorsConfiguration("/**", config);
-
-        return source;
-    }
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        // config.setAllowCredentials(true); // 이거 빼면 된다
+//        // https://gareen.tistory.com/66
+//        config.addAllowedOrigin("*");
+//        config.addAllowedMethod("*");
+//        config.setAllowedMethods(List.of("GET","POST","DELETE","PATCH","OPTION","PUT"));
+//        source.registerCorsConfiguration("/**", config);
+//
+//        return source;
+//    }
 
     // 암호를 암호화하거나, 사용자가 입력한 암호가 기존 암호랑 일치하는지 검사할 때 이 Bean을 사용
     @Bean
