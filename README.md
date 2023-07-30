@@ -2,7 +2,7 @@
 
 - 개발언어: 자바
 - IDE: IntellJ(Community Edition)
-- 프로젝트 SDK: JDK 11 이상
+- 프로젝트 SDK: JDK 11
 - Spring Boot: 2.7.13
 - 의존성 관리 툴: Maven
 
