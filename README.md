@@ -27,7 +27,7 @@
 
 </project>
 ```
-## 기능(https://fakestoreapi.com/)
+## 기능
 <!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
 
