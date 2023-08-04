@@ -12,17 +12,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    
-    services:
-      mariadb:
-        image: mariadb:10.5
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: fakestore
-          MYSQL_USER: storeuser
-          MYSQL_PASSWORD: cks147
-        ports:
-          - 3306:3306
 
     env:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/fakestore
@@ -31,15 +20,20 @@ jobs:
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.mariadb.jdbc.Driver
 
     steps:
+    - uses: getong/mariadb-action@v1.1
+      with:
+        host port: 3306
+        container port: 3306
+        character set server: 'utf8'
+        collation server: 'utf8_general_ci'
+        mariadb version: '10.4.10'
+        mysql database: fakestore
+        mysql root password: root
+        mysql user: storeuser
+        mysql password: cks147
+    
     - uses: actions/checkout@v3
-
-    - name: Download wait-for-it
-      run: |
-        wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
-        chmod +x wait-for-it.sh
-
-    - name: Wait for MariaDB
-      run: ./wait-for-it.sh mariadb:3306 --timeout=60
+    
 
     - name: Set up JDK 11
       uses: actions/setup-java@v3
