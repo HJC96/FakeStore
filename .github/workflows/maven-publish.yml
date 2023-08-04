@@ -20,17 +20,11 @@ jobs:
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.mariadb.jdbc.Driver
 
     steps:
-    - uses: getong/mariadb-action@v1.1
-      with:
-        host port: 3306
-        container port: 3306
-        character set server: 'utf8'
-        collation server: 'utf8_general_ci'
-        mariadb version: '10.4.10'
-        mysql database: fakestore
-        mysql root password: root
-        mysql user: storeuser
-        mysql password: cks147
+    - name: Run MariaDB container
+      run: |
+        docker run --name mariadb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fakestore -e MYSQL_USER=storeuser -e MYSQL_PASSWORD=cks147 -p 3306:3306 -d mariadb:10.4.10
+
+    - uses: actions/checkout@v3
     
     - uses: actions/checkout@v3
     
