@@ -15,16 +15,22 @@ jobs:
       contents: read
       packages: write
     
-    services: # 서비스 섹션 추가
-      mariadb:
-        image: mariadb:10.5
-        env:
-          MYSQL_ROOT_PASSWORD: root_password
-          MYSQL_DATABASE: test_db
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-        ports:
-          - 3306:3306
+services:
+  mariadb:
+    image: mariadb:10.5
+    env:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fakestore
+      MYSQL_USER: storeuser
+      MYSQL_PASSWORD: cks147
+    ports:
+      - 3306:3306
+
+env:
+  SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/fakestore
+  SPRING_DATASOURCE_USERNAME: storeuser
+  SPRING_DATASOURCE_PASSWORD: cks147
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.mariadb.jdbc.Driver
           
     steps:
     - uses: actions/checkout@v3
