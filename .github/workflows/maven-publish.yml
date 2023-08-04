@@ -14,7 +14,18 @@ jobs:
     permissions:
       contents: read
       packages: write
-
+    
+    services: # 서비스 섹션 추가
+      mariadb:
+        image: mariadb:10.5
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+        ports:
+          - 3306:3306
+          
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -26,7 +37,7 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -Ptest
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
