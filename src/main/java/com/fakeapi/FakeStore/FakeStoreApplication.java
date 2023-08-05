@@ -12,7 +12,6 @@ public class FakeStoreApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(FakeStoreApplication.class, args);
-
 	}
 }
 
