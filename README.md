@@ -1,11 +1,18 @@
-# API 서버를 만들면서 기록한 내용들 입니다.
+## 프로젝트 개요
+Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했습니다. 이 프로젝트는 FakeStoreAPI를 기반한 것으로, 이는 실제 상점의 다양한 기능을 제공하는 JavaScript 기반 오픈소스 API 서버입니다. 상품 조회, 장바구니 관리, 사용자 인증 등의 기능을 포함하고 있습니다.
 
+
+<!--
+# API 서버를 만들면서 기록한 내용들 입니다.
+-->
+## 개발환경
 - 개발언어: 자바
 - IDE: IntellJ(Community Edition)
 - 프로젝트 SDK: JDK 11
 - Spring Boot: 2.7.13
 - 의존성 관리 툴: Maven
 
+<!--
 1. 환경 세팅(기본 프로젝트 셋팅시)
 
 ```java
@@ -27,21 +34,24 @@
 
 </project>
 ```
+-->
 ## 기능
 <!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
 
 
 
-
-
-1. ERD 설계
+## ERD 설계
 
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4">
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/3347816a-6e3d-41c4-9f75-4e0e7748e142">
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/5db3c664-ceed-40bf-bd74-4a9216d89374">
 
+## Architecture
+<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/26f21b57-defc-4342-a2d2-aee86d50f8a8">
 
+
+<!--
 
 1. domain 작성
 
@@ -324,3 +334,4 @@ public class ProductController {
 
 <img width="561" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/6381bcee-c23d-4aee-a571-db70a844b708">
 
+-->
