@@ -37,7 +37,7 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
-		# For Debugging
+    # For Debugging
     - name: List all running containers
       run: docker ps # 실행 중인 모든 컨테이너 나열
 
