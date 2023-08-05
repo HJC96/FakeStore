@@ -3,42 +3,41 @@ name: Maven Package
 
 # 트리거 설정
 on: 
-	# 새 릴리즈 생성 시
+  # 새 릴리즈 생성 시
   release:
     types: [created] 
-	# 코드가 푸시될 때
+  # 코드가 푸시될 때
   push: 
-	# 풀 리퀘스트 생성 시
+  # 풀 리퀘스트 생성 시
   pull_request: 
 
 jobs:
-	# 빌드 작업
+  # 빌드 작업
   build: 
-		# 운영체제 설정
+    # 운영체제 설정
     runs-on: ubuntu-latest 
-		# 권한 설정
+    # 권한 설정
     permissions: 
       contents: read
       packages: write
-		# 환경 변수 설정
+    # 환경 변수 설정
     env: 
       SPRING_DATASOURCE_URL: jdbc:mariadb://localhost:3306/fakestore
       SPRING_DATASOURCE_USERNAME: storeuser
       SPRING_DATASOURCE_PASSWORD: cks147
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.mariadb.jdbc.Driver
-		# 작업 단계
+    # 작업 단계
     steps: 
-			# 사용자 정의 네트워크 생성
+    # 사용자 정의 네트워크 생성
     - name: Create user-defined network
       run: docker network create my_network 
-
-			# MariaDB 컨테이너 실행
+    # MariaDB 컨테이너 실행
     - name: Run MariaDB container
       run: |
         docker run --name mariadb --network my_network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fakestore -e MYSQL_USER=storeuser -e MYSQL_PASSWORD=cks147 -p 3306:3306 -d mariadb:10.4.10 
-			# 저장소 체크아웃
+    # 저장소 체크아웃
     - uses: actions/checkout@v3 
-			# JDK 11 설정
+    # JDK 11 설정
     - name: Set up JDK 11
       uses: actions/setup-java@v3 
       with:
@@ -47,12 +46,9 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
-		# For Debugging
+    # For Debugging
     - name: List all running containers
       run: docker ps # 실행 중인 모든 컨테이너 나열
-
+    # Maven을 사용하여 패키지 빌드
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -Ptest # Maven을 사용하여 패키지 빌드
-
-    - name: Build with Maven
-      run: mvn clean install # Maven을 사용하여 클린 및 설치
+      run: mvn -B package --file pom.xml -Ptest 
