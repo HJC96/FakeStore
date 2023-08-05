@@ -24,7 +24,7 @@ jobs:
     env: 
       SPRING_DATASOURCE_URL: jdbc:mariadb://localhost:3306/fakestore
       SPRING_DATASOURCE_USERNAME: storeuser
-      SPRING_DATASOURCE_PASSWORD: cks147
+      SPRING_DATASOURCE_PASSWORD: storeuser
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.mariadb.jdbc.Driver
     # 작업 단계
     steps: 
@@ -34,7 +34,7 @@ jobs:
     # MariaDB 컨테이너 실행
     - name: Run MariaDB container
       run: |
-        docker run --name mariadb --network my_network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fakestore -e MYSQL_USER=storeuser -e MYSQL_PASSWORD=cks147 -p 3306:3306 -d mariadb:10.4.10 
+        docker run --name mariadb --network my_network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fakestore -e MYSQL_USER=storeuser -e MYSQL_PASSWORD=storeuser -p 3306:3306 -d mariadb:10.4.10 
     # 저장소 체크아웃
     - uses: actions/checkout@v3 
     # JDK 11 설정
