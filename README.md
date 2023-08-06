@@ -53,6 +53,11 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 <!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
 
+## Sample Data
+다음의 데이터를 추가해주세요.
+- Products https://fakestoreapi.com/products
+- Carts https://fakestoreapi.com/carts
+
 
 ## Example Code
 
@@ -389,9 +394,5 @@ public class ProductController {
 -->
 
 
-## Sample Data
-다음의 데이터를 추가해주세요.
-- Products https://fakestoreapi.com/products
-- Carts https://fakestoreapi.com/carts
 
 
