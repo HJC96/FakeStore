@@ -35,7 +35,6 @@ public class ProductController {
 
     @PostMapping
     public Product registerProduct(@RequestBody @Valid ProductDTO productDTO){
-        System.out.println("-----------");
         return productService.register(productDTO);
     }
 

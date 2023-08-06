@@ -6,6 +6,7 @@ import com.fakeapi.FakeStore.domain.Product;
 import com.fakeapi.FakeStore.dto.PageRequestDTO;
 import com.fakeapi.FakeStore.dto.PageResponseDTO;
 import com.fakeapi.FakeStore.dto.ProductDTO;
+import com.fakeapi.FakeStore.repository.CategoryRepository;
 import com.fakeapi.FakeStore.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
 
 //    public FakeStoreServiceImpl(ProductRepository productRepository, ModelMapper modelMapper) {
@@ -30,9 +32,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product register(ProductDTO productDTO) {
         Product product = modelMapper.map(productDTO, Product.class);
-        Category category = new Category();
-        category.setName(productDTO.getCategory());
-        product.setCategory(category);
+        Optional<Category> optionalCategory = categoryRepository.findByName(productDTO.getCategory());
+        if(optionalCategory.isEmpty()){
+            Category category = new Category();
+            category.setName(productDTO.getCategory());
+            product.setCategory(category);
+        }else{
+            product.setCategory(optionalCategory.get());
+        }
+
         product.setRating(productDTO.getRating());
         productRepository.save(product);
         return product;

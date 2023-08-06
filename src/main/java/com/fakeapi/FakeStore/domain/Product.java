@@ -24,7 +24,7 @@ public class Product {
     @Column(name = "PRICE")
     private Double price;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 2000)
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
