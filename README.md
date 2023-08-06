@@ -61,7 +61,20 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 
 ## Example Code
 
-### 회원가입
+### Products
+**모든 제품 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products' \
+--header 'Content-Type: application/json'
+~~~
+**단일 제품 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products/{id}' \
+--header 'Content-Type: application/json'
+~~~
+
+### Member
+**회원가입**
 ~~~terminal
 curl --location --request POST 'localhost:8080/members/signup' \
 --header 'Content-Type: application/json' \
@@ -75,7 +88,7 @@ curl --location --request POST 'localhost:8080/members/signup' \
 "gender": "M or F"
 }'
 ~~~
-### 로그인
+**로그인**
 ~~~terminal
 curl --location --request POST 'localhost:8080/members/login' \
 --header 'Content-Type: application/json' \
@@ -84,13 +97,13 @@ curl --location --request POST 'localhost:8080/members/login' \
 "password":"암호"
 }'
 ~~~
-### 회원정보 읽어오기
+**회원정보 읽어오기**
 ~~~terminal
 curl  --request GET 'http://localhost:8080/members/info' \
 --header 'Authorization: Bearer 엑세스키' \
 --header 'Content-Type: application/json'
 ~~~
-### 로그아웃
+**로그아웃**
 ~~~terminal
 curl --location --request DELETE 'http://localhost:8080/members/logout' \
 --header 'Authorization: Bearer accessToken' \
@@ -99,7 +112,7 @@ curl --location --request DELETE 'http://localhost:8080/members/logout' \
     "refreshToken" : "리프래시토큰"
 }'
 ~~~
-### 리프레시 토큰
+**리프레시 토큰**
 ~~~terminal
 curl --location 'http://localhost:8080/members/refreshToken' \
 --header 'Content-Type: application/json' \
@@ -107,6 +120,8 @@ curl --location 'http://localhost:8080/members/refreshToken' \
 "refreshToken" : "리프래시토큰"
 }'
 ~~~
+
+
 
 <!--
 
