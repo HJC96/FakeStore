@@ -35,21 +35,24 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 </project>
 ```
 -->
-## 기능
-<!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
-<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
+
+## Architecture
+<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/26f21b57-defc-4342-a2d2-aee86d50f8a8">
 
 
 
 ## ERD 설계
 
-<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4">
-<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/3347816a-6e3d-41c4-9f75-4e0e7748e142">
-<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/5db3c664-ceed-40bf-bd74-4a9216d89374">
+<img width="400" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4">
+<img width="400" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/3347816a-6e3d-41c4-9f75-4e0e7748e142">
+<img width="400" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/5db3c664-ceed-40bf-bd74-4a9216d89374">
 
-## Architecture
-<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/26f21b57-defc-4342-a2d2-aee86d50f8a8">
+## 기능
+<!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
+<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
 
+
+## Example Code
 
 <!--
 
