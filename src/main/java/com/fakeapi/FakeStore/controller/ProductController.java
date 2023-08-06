@@ -6,6 +6,7 @@ import com.fakeapi.FakeStore.dto.PageResponseDTO;
 import com.fakeapi.FakeStore.dto.ProductDTO;
 import com.fakeapi.FakeStore.service.ProductService;
 import com.fakeapi.FakeStore.service.ProductServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -24,25 +25,22 @@ public class ProductController {
         return productService.read(id);
     }
 
-//    @GetMapping
-//    public Page<Product> read_limit(@RequestParam(value="limit",required = false, defaultValue = "0") int limit, @RequestParam(required = false, defaultValue = "0") int page){
-//        int size=10;
-//        if(limit != 0)
-//            return productService.list(page, limit);
-//        else
-//            return productService.list(page, size);
-//    }
+    @GetMapping(params = "limit")
+    public PageResponseDTO<ProductDTO> read_limit(@RequestParam(value="limit",required = false, defaultValue = "0") int limit, PageRequestDTO pageRequestDTO){
+        if(limit > 0)
+            return productService.list_limit(pageRequestDTO, limit);
+        else
+            return productService.list(pageRequestDTO);
+    }
 
-//    @PostMapping
-//    public Product registerProduct(ProductDTO productDTO){
-//        return productService.register(productDTO);
-//    }
+    @PostMapping
+    public Product registerProduct(@RequestBody @Valid ProductDTO productDTO){
+        System.out.println("-----------");
+        return productService.register(productDTO);
+    }
 
     @GetMapping
     public PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO) {
         return productService.list(pageRequestDTO);
     }
-
-
-
 }

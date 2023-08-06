@@ -1,5 +1,6 @@
 package com.fakeapi.FakeStore.service;
 
+import com.fakeapi.FakeStore.domain.Category;
 import com.fakeapi.FakeStore.domain.Product;
 
 import com.fakeapi.FakeStore.dto.PageRequestDTO;
@@ -29,7 +30,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product register(ProductDTO productDTO) {
         Product product = modelMapper.map(productDTO, Product.class);
-        return productRepository.save(product);
+        Category category = new Category();
+        category.setName(productDTO.getCategory());
+        product.setCategory(category);
+        product.setRating(productDTO.getRating());
+        productRepository.save(product);
+        return product;
     }
 
     @Override
@@ -53,4 +59,17 @@ public class ProductServiceImpl implements ProductService {
                 .total((int)result.getTotalElements())
                 .build();
     }
+
+    @Override
+    public PageResponseDTO<ProductDTO> list_limit(PageRequestDTO pageRequestDTO, int limit) {
+        Page<ProductDTO> result = productRepository.list(pageRequestDTO);
+
+        return PageResponseDTO.<ProductDTO>builder()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(result.toList())
+//                .total((int)result.getTotalElements())
+                .total(limit)
+                .build();
+    }
+
 }

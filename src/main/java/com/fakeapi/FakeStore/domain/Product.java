@@ -1,6 +1,7 @@
 package com.fakeapi.FakeStore.domain;
 
 
+import jakarta.annotation.Nullable;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -37,10 +38,10 @@ public class Product {
 //    private List<Category> categories = new ArrayList<>();
 
     @Column(name = "IMAGE")
-    private String imageurl;
+    private String image;
 
     @Embedded
-    @Column(name = "RATING")
+    @Column(name = "RATING", nullable = true) // Rating이 없는 Product가 들어올수 있다.
     private Rating rating;
 
 }

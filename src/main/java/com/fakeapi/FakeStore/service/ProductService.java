@@ -18,4 +18,6 @@ public interface ProductService {
 
     PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO);
 
+    PageResponseDTO<ProductDTO> list_limit(PageRequestDTO pageRequestDTO, int limit);
+
 }

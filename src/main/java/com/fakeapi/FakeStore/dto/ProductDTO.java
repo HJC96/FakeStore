@@ -2,6 +2,7 @@ package com.fakeapi.FakeStore.dto;
 
 
 import com.fakeapi.FakeStore.domain.Rating;
+import jakarta.annotation.Nullable;
 import lombok.*;
 
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +25,8 @@ public class ProductDTO {
     private Double price;
     private String description;
     private String category;
-    private String imageurl;
+    private String image;
+    @Nullable
     private Rating rating;
 
     public Long getId() {
@@ -60,8 +62,8 @@ public class ProductDTO {
         return category;
     }
 
-    public String getImageurl() {
-        return imageurl;
+    public String getimage() {
+        return image;
     }
 
     public Rating getRating() {
