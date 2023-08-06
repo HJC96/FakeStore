@@ -387,3 +387,11 @@ public class ProductController {
 <img width="561" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/6381bcee-c23d-4aee-a571-db70a844b708">
 
 -->
+
+
+## Sample Data
+다음의 데이터를 추가해주세요.
+- Products https://fakestoreapi.com/products
+- Carts https://fakestoreapi.com/carts
+
+
