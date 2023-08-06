@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +24,7 @@ class MemberRepositoryTest {
 
     @Test
     public void Member_Sign(){
-//
+
 //        Member member = new Member();
 //        member.setEmail("gkswlcjs2@naver.com");
 //        member.setMembername("HanJiChan");

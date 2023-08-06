@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Table;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Table;
 
 @Embeddable
 @Getter @Setter

@@ -4,7 +4,7 @@ import com.fakeapi.FakeStore.domain.Member;
 import com.fakeapi.FakeStore.dto.MemberSignUpDTO;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 
 @Service

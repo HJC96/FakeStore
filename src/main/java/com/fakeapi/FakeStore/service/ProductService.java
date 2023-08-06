@@ -8,7 +8,7 @@ import com.fakeapi.FakeStore.dto.ProductDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @Service
 @Transactional

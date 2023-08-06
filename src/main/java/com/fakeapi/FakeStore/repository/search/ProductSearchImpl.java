@@ -18,7 +18,7 @@ import com.fakeapi.FakeStore.domain.Product;
 import com.fakeapi.FakeStore.dto.PageRequestDTO;
 import com.fakeapi.FakeStore.dto.ProductDTO;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 public class ProductSearchImpl extends QuerydslRepositorySupport implements ProductSearch {
