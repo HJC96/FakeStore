@@ -56,6 +56,53 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 
 ## Example Code
 
+### 회원가입
+~~~terminal
+curl --location --request POST 'localhost:8080/members/signup' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"name":"이름",
+"email":"이메일",
+"password":"8자이상,대소문자특수문자섞은암호",
+"birthYear":"년도",
+"birthMonth":"월",
+"birthDay":"일",
+"gender": "M or F"
+}'
+~~~
+### 로그인
+~~~terminal
+curl --location --request POST 'localhost:8080/members/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"email":"이메일",
+"password":"암호"
+}'
+~~~
+### 회원정보 읽어오기
+~~~terminal
+curl  --request GET 'http://localhost:8080/members/info' \
+--header 'Authorization: Bearer 엑세스키' \
+--header 'Content-Type: application/json'
+~~~
+### 로그아웃
+~~~terminal
+curl --location --request DELETE 'http://localhost:8080/members/logout' \
+--header 'Authorization: Bearer accessToken' \
+--header 'Content-Type: application/json' \
+--data '{
+    "refreshToken" : "리프래시토큰"
+}'
+~~~
+### 리프래시 토큰
+~~~terminal
+curl --location 'http://localhost:8080/members/refreshToken' \
+--header 'Content-Type: application/json' \
+--data '{
+"refreshToken" : "리프래시토큰"
+}'
+~~~
+
 <!--
 
 1. domain 작성
