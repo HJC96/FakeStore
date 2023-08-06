@@ -33,13 +33,14 @@ public class ProductController {
             return productService.list(pageRequestDTO);
     }
 
-    @PostMapping
-    public Product registerProduct(@RequestBody @Valid ProductDTO productDTO){
-        return productService.register(productDTO);
-    }
-
     @GetMapping
     public PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO) {
         return productService.list(pageRequestDTO);
+    }
+
+
+    @PostMapping
+    public Product registerProduct(@RequestBody @Valid ProductDTO productDTO){
+        return productService.register(productDTO);
     }
 }
