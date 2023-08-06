@@ -8,8 +8,8 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 ## 개발환경
 - 개발언어: 자바
 - IDE: IntellJ(Community Edition)
-- 프로젝트 SDK: JDK 11
-- Spring Boot: 2.7.13
+- 프로젝트 SDK: JDK 11 -> JDK 17
+- Spring Boot: 2.7.13 -> 3.1.2
 - 의존성 관리 툴: Maven
 
 <!--
