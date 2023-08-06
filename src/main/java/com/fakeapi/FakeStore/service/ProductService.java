@@ -10,11 +10,15 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public interface ProductService {
     Product register(ProductDTO productDTO);
     ProductDTO read(Long id);
+
+    List<ProductDTO> listByCategoryName(String name);
 
     PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO);
 

@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -54,6 +56,22 @@ public class ProductServiceImpl implements ProductService {
 
         return productDTO;
     }
+    @Override
+    public List<ProductDTO> listByCategoryName(String name){
+        List<Product> product = productRepository.findAllByCategoryName(name);
+        System.out.println("---------------");
+
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(Product p:product){
+            System.out.println("---------------");
+            System.out.println(p.getCategory());
+            ProductDTO productDTO = modelMapper.map(p,ProductDTO.class);
+            productDTO.setCategory(p.getCategory().getName());
+            productDTOList.add(productDTO);
+        }
+        return productDTOList;
+    }
+
 
 
     @Override
