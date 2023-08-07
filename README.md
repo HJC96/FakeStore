@@ -102,15 +102,36 @@ curl --location --request GET 'localhost:8080/products/category/{categoryName}' 
 curl --location --request POST 'localhost:8080/products' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-	title: 'test product',
-	price: 13.5,
-	description: 'lorem ipsum set',
-	image: 'https://i.pravatar.cc',
-	category: 'electronic'
+	"title": "test product",
+	"price": 13.5,
+	"description": "lorem ipsum set",
+	"image": "https://i.pravatar.cc",
+	"category": "electronic"
 }'
 ~~~
-
-
+**제품 업데이트(PUT/PATCH)**
+~~~terminal
+curl --location --request PUT 'localhost:8080/products/{id}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "test product",
+	"price": 13.5,
+	"description": "lorem ipsum set",
+	"image": "https://i.pravatar.cc",
+	"category": "electronic"
+}'
+~~~
+~~~terminal
+curl --location --request PATCH 'localhost:8080/products/{id}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "test product",
+	"price": 13.5,
+	"description": "lorem ipsum set",
+	"image": "https://i.pravatar.cc",
+	"category": "electronic"
+}'
+~~~
 ### Member
 **회원가입**
 ~~~terminal
