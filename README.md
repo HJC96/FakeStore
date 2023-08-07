@@ -94,9 +94,22 @@ curl --location --request GET 'localhost:8080/products/categories' \
 ~~~
 **특정 카테고리의 제품 가져오기**
 ~~~terminal
-curl --location --request GET 'localhost:8080/products/category/jewelery' \
+curl --location --request GET 'localhost:8080/products/category/{categoryName}' \
 --header 'Content-Type: application/json'
 ~~~
+**새로운 제품 추가**
+~~~terminal
+curl --location --request POST 'localhost:8080/products' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	title: 'test product',
+	price: 13.5,
+	description: 'lorem ipsum set',
+	image: 'https://i.pravatar.cc',
+	category: 'electronic'
+}'
+~~~
+
 
 ### Member
 **회원가입**
