@@ -77,9 +77,9 @@ curl --location --request GET 'localhost:8080/products?page={pageNumber}' \
 curl --location --request GET 'localhost:8080/products/{id}' \
 --header 'Content-Type: application/json'
 ~~~
-****
+**제품 가져오기(특정 개수)**
 ~~~terminal
-curl --location --request GET 'localhost:8080/products/{id}' \
+curl --location --request GET 'localhost:8080/products?limit={num} \
 --header 'Content-Type: application/json'
 ~~~
 **결과 정렬 하기(asc/desc)**
