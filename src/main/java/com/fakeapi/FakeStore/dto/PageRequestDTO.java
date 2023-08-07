@@ -27,6 +27,8 @@ public class PageRequestDTO {
 
     private String keyword;
 
+    private String sort;
+
 //    //추가된 내용들
 //    private LocalDate from;
 //
@@ -42,9 +44,18 @@ public class PageRequestDTO {
         return type.split("");
     }
 
-    public Pageable getPageable(String...props) {
-//        return PageRequest.of(this.page -1, this.size, Sort.by(props).descending());
+    public Pageable getPageable(String... props) {
+        if ("desc".equalsIgnoreCase(sort)) {
+            return PageRequest.of(this.page -1, this.size, Sort.by(props).descending());
+        }
         return PageRequest.of(this.page -1, this.size, Sort.by(props).ascending());
+    }
+
+    public Pageable getPageableWithLimit(int limit, String... props) {
+        if ("desc".equalsIgnoreCase(sort)) {
+            return PageRequest.of(this.page - 1, limit, Sort.by(props).descending());
+        }
+        return PageRequest.of(this.page - 1, limit, Sort.by(props).ascending());
     }
 
 
@@ -72,6 +83,8 @@ public class PageRequestDTO {
 
         return link;
     }
+
+
 
 
 

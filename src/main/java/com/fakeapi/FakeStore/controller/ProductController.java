@@ -34,9 +34,11 @@ public class ProductController {
     }
 
     @GetMapping(params = "limit")
-    public PageResponseDTO<ProductDTO> read_limit(@RequestParam(value="limit",required = false, defaultValue = "0") int limit, PageRequestDTO pageRequestDTO){
+    public PageResponseDTO<ProductDTO> readLimit(
+            @RequestParam(value="limit",required = false, defaultValue = "10") int limit,
+            PageRequestDTO pageRequestDTO){
         if(limit > 0)
-            return productService.list_limit(pageRequestDTO, limit);
+            return productService.listWithLimit(pageRequestDTO, limit);
         else
             return productService.list(pageRequestDTO);
     }
@@ -46,6 +48,15 @@ public class ProductController {
         return productService.list(pageRequestDTO);
     }
 
+    @GetMapping(params = "sort")
+    public PageResponseDTO<ProductDTO> listSortedProducts(
+            @RequestParam(value="sort", defaultValue = "asc") String sort,
+            PageRequestDTO pageRequestDTO) {
+
+        pageRequestDTO.setSort(sort);
+
+        return productService.list(pageRequestDTO);
+    }
 
     @PostMapping
     public Product registerProduct(@RequestBody @Valid ProductDTO productDTO){

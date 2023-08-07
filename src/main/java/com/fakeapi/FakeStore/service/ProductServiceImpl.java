@@ -11,7 +11,9 @@ import com.fakeapi.FakeStore.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -59,11 +61,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> listByCategoryName(String name){
         List<Product> product = productRepository.findAllByCategoryName(name);
-        System.out.println("---------------");
 
         List<ProductDTO> productDTOList = new ArrayList<>();
         for(Product p:product){
-            System.out.println("---------------");
             System.out.println(p.getCategory());
             ProductDTO productDTO = modelMapper.map(p,ProductDTO.class);
             productDTO.setCategory(p.getCategory().getName());
@@ -71,8 +71,6 @@ public class ProductServiceImpl implements ProductService {
         }
         return productDTOList;
     }
-
-
 
     @Override
     public PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO) {
@@ -87,15 +85,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageResponseDTO<ProductDTO> list_limit(PageRequestDTO pageRequestDTO, int limit) {
-        Page<ProductDTO> result = productRepository.list(pageRequestDTO);
+    public PageResponseDTO<ProductDTO> listWithLimit(PageRequestDTO pageRequestDTO, int limit) {
+        // pageRequestDTO.setSize(limit);
+        Pageable pageableWithLimit = pageRequestDTO.getPageableWithLimit(limit);
+        Page<Product> productPage = productRepository.findAll(pageableWithLimit);
+        List<ProductDTO> dtoList = new ArrayList<>();
+        for(Product p:productPage.getContent()){
+            ProductDTO productDTO = modelMapper.map(p,ProductDTO.class);
+            dtoList.add(productDTO);
+        }
+
+        Page<ProductDTO> result = new PageImpl<>(dtoList, pageableWithLimit, productPage.getTotalElements());
 
         return PageResponseDTO.<ProductDTO>builder()
                 .pageRequestDTO(pageRequestDTO)
                 .dtoList(result.toList())
-//                .total((int)result.getTotalElements())
-                .total(limit)
+                .total((int)result.getTotalElements())
                 .build();
     }
-
 }
