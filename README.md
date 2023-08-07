@@ -67,7 +67,7 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 curl --location --request GET 'localhost:8080/products' \
 --header 'Content-Type: application/json'
 ~~~
-**모든 제품 가져오기(페이지) **
+**모든 제품 가져오기(페이지)**
 ~~~terminal
 curl --location --request GET 'localhost:8080/products?page={pageNumber}' \
 --header 'Content-Type: application/json'
