@@ -138,13 +138,13 @@ curl --location --request PATCH 'localhost:8080/products/{id}' \
 curl --location --request POST 'localhost:8080/members/signup' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"name":"이름",
-"email":"이메일",
-"password":"8자이상,대소문자특수문자섞은암호",
-"birthYear":"년도",
-"birthMonth":"월",
-"birthDay":"일",
-"gender": "M or F"
+	"name":"이름",
+	"email":"이메일",
+	"password":"8자이상,대소문자특수문자섞은암호",
+	"birthYear":"년도",
+	"birthMonth":"월",
+	"birthDay":"일",
+	"gender": "M or F"
 }'
 ~~~
 **로그인**
@@ -152,8 +152,8 @@ curl --location --request POST 'localhost:8080/members/signup' \
 curl --location --request POST 'localhost:8080/members/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"email":"이메일",
-"password":"암호"
+	"email":"이메일",
+	"password":"암호"
 }'
 ~~~
 **회원정보 읽어오기**
@@ -168,7 +168,7 @@ curl --location --request DELETE 'http://localhost:8080/members/logout' \
 --header 'Authorization: Bearer accessToken' \
 --header 'Content-Type: application/json' \
 --data '{
-"refreshToken" : "리프래시토큰"
+	"refreshToken" : "리프래시토큰"
 }'
 ~~~
 **리프레시 토큰**
@@ -176,7 +176,7 @@ curl --location --request DELETE 'http://localhost:8080/members/logout' \
 curl --location 'http://localhost:8080/members/refreshToken' \
 --header 'Content-Type: application/json' \
 --data '{
-"refreshToken" : "리프래시토큰"
+	"refreshToken" : "리프래시토큰"
 }'
 ~~~
 
