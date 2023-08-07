@@ -87,6 +87,17 @@ curl --location --request GET 'localhost:8080/products?limit={num} \
 curl --location --request GET 'localhost:8080/products?sort=desc' \
 --header 'Content-Type: application/json'
 ~~~
+**모든 카테고리 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products/categories' \
+--header 'Content-Type: application/json'
+~~~
+**특정 카테고리의 제품 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products/category/jewelery' \
+--header 'Content-Type: application/json'
+~~~
+
 ### Member
 **회원가입**
 ~~~terminal
@@ -123,7 +134,7 @@ curl --location --request DELETE 'http://localhost:8080/members/logout' \
 --header 'Authorization: Bearer accessToken' \
 --header 'Content-Type: application/json' \
 --data '{
-    "refreshToken" : "리프래시토큰"
+"refreshToken" : "리프래시토큰"
 }'
 ~~~
 **리프레시 토큰**
