@@ -4,6 +4,7 @@ import com.fakeapi.FakeStore.domain.Member;
 import com.fakeapi.FakeStore.domain.RefreshToken;
 import com.fakeapi.FakeStore.domain.Role;
 import com.fakeapi.FakeStore.dto.*;
+import com.fakeapi.FakeStore.security.jwt.util.IfLogin;
 import com.fakeapi.FakeStore.security.jwt.util.JwtTokenizer;
 import com.fakeapi.FakeStore.service.MemberService;
 import com.fakeapi.FakeStore.service.RefreshTokenService;
@@ -83,6 +84,12 @@ public class MemberController {
                 .nickname(member.getName())
                 .build();
         return new ResponseEntity(loginResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity userinfo(@IfLogin LoginUserDTO loginUserDTO) {
+        Member member = memberService.findByEmail(loginUserDTO.getEmail()).get();
+        return new ResponseEntity(member, HttpStatus.OK);
     }
     @DeleteMapping("/logout")
     public ResponseEntity logout(@RequestBody RefreshTokenDTO refreshTokenDTO) {

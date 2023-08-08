@@ -5,6 +5,8 @@ import com.fakeapi.FakeStore.dto.MemberSignUpDTO;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,4 +16,5 @@ public interface MemberService {
     Optional<Member> findByEmail(String email);
 
     Optional<Member> getMember(Long memberId);
+
 }
