@@ -8,8 +8,8 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 ## 개발환경
 - 개발언어: 자바
 - IDE: IntellJ(Community Edition)
-- 프로젝트 SDK: JDK 11 -> JDK 17
-- Spring Boot: 2.7.13 -> 3.1.2
+- 프로젝트 SDK: JDK 11 -> JDK 17 (23.08.06)
+- Spring Boot: 2.7.13 -> 3.1.2 (23.08.06)
 - 의존성 관리 툴: Maven
 
 <!--
@@ -53,55 +53,134 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 <!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
 <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
 
+## Sample Data
+다음의 데이터를 추가해주세요.
+- Products https://fakestoreapi.com/products
+- Carts https://fakestoreapi.com/carts
+
 
 ## Example Code
 
-### 회원가입
+### Products
+**모든 제품 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products' \
+--header 'Content-Type: application/json'
+~~~
+**모든 제품 가져오기(페이지)**
+~~~terminal
+curl --location --request GET 'localhost:8080/products?page={pageNumber}' \
+--header 'Content-Type: application/json'
+~~~
+**단일 제품 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products/{id}' \
+--header 'Content-Type: application/json'
+~~~
+**제품 가져오기(특정 개수)**
+~~~terminal
+curl --location --request GET 'localhost:8080/products?limit={num} \
+--header 'Content-Type: application/json'
+~~~
+**결과 정렬 하기(asc/desc)**
+~~~terminal
+curl --location --request GET 'localhost:8080/products?sort=desc' \
+--header 'Content-Type: application/json'
+~~~
+**모든 카테고리 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products/categories' \
+--header 'Content-Type: application/json'
+~~~
+**특정 카테고리의 제품 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/products/category/{categoryName}' \
+--header 'Content-Type: application/json'
+~~~
+**새로운 제품 추가**
+~~~terminal
+curl --location --request POST 'localhost:8080/products' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "test product",
+	"price": 13.5,
+	"description": "lorem ipsum set",
+	"image": "https://i.pravatar.cc",
+	"category": "electronic"
+}'
+~~~
+**제품 업데이트(PUT/PATCH)**
+~~~terminal
+curl --location --request PUT 'localhost:8080/products/{id}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "test product",
+	"price": 13.5,
+	"description": "lorem ipsum set",
+	"image": "https://i.pravatar.cc",
+	"category": "electronic"
+}'
+~~~
+~~~terminal
+curl --location --request PATCH 'localhost:8080/products/{id}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "test product",
+	"price": 13.5,
+	"description": "lorem ipsum set",
+	"image": "https://i.pravatar.cc",
+	"category": "electronic"
+}'
+~~~
+### Member
+**회원가입**
 ~~~terminal
 curl --location --request POST 'localhost:8080/members/signup' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"name":"이름",
-"email":"이메일",
-"password":"8자이상,대소문자특수문자섞은암호",
-"birthYear":"년도",
-"birthMonth":"월",
-"birthDay":"일",
-"gender": "M or F"
+	"name":"이름",
+	"email":"이메일",
+	"password":"8자이상,대소문자특수문자섞은암호",
+	"birthYear":"년도",
+	"birthMonth":"월",
+	"birthDay":"일",
+	"gender": "M or F"
 }'
 ~~~
-### 로그인
+**로그인**
 ~~~terminal
 curl --location --request POST 'localhost:8080/members/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"email":"이메일",
-"password":"암호"
+	"email":"이메일",
+	"password":"암호"
 }'
 ~~~
-### 회원정보 읽어오기
+**회원정보 읽어오기**
 ~~~terminal
 curl  --request GET 'http://localhost:8080/members/info' \
 --header 'Authorization: Bearer 엑세스키' \
 --header 'Content-Type: application/json'
 ~~~
-### 로그아웃
+**로그아웃**
 ~~~terminal
 curl --location --request DELETE 'http://localhost:8080/members/logout' \
 --header 'Authorization: Bearer accessToken' \
 --header 'Content-Type: application/json' \
 --data '{
-    "refreshToken" : "리프래시토큰"
+	"refreshToken" : "리프래시토큰"
 }'
 ~~~
-### 리프레시 토큰
+**리프레시 토큰**
 ~~~terminal
 curl --location 'http://localhost:8080/members/refreshToken' \
 --header 'Content-Type: application/json' \
 --data '{
-"refreshToken" : "리프래시토큰"
+	"refreshToken" : "리프래시토큰"
 }'
 ~~~
+
+
 
 <!--
 
@@ -389,9 +468,5 @@ public class ProductController {
 -->
 
 
-## Sample Data
-다음의 데이터를 추가해주세요.
-- Products https://fakestoreapi.com/products
-- Carts https://fakestoreapi.com/carts
 
 
