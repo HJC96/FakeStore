@@ -25,7 +25,7 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping
-    public List<CartDTO> cart_list(){
+    public List<CartDTO> cartList(){
         return cartService.list();
     }
 

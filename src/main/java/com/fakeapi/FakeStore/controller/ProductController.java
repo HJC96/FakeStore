@@ -12,6 +12,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +34,22 @@ public class ProductController {
         log.info("read id: "+ id);
         return productService.read(id);
     }
+    @PutMapping("/{id}") // PUT은 일반적으로 리소스 전체를 업데이트 하는데 사용
+    public ProductDTO updatePut(@PathVariable("id") Long id, @RequestBody @Valid ProductDTO productDTO){
+        return productService.update(id, productDTO);
+    }
 
+    @PatchMapping("{id}") // PATCH는 일반적으로 리소스 일부를 업데이트 하는데 사용
+    public ProductDTO updatePatch(@PathVariable("id") Long id, @RequestBody @Valid ProductDTO productDTO){
+        return productService.update(id, productDTO);
+    }
+
+    //DELETE 시 CATEGORY_ID 테이블때문에 삭제 안되는 이슈
+    @DeleteMapping("{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id){
+        productService.delete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
     @GetMapping(params = "limit")
     public PageResponseDTO<ProductDTO> readLimit(
             @RequestParam(value="limit",required = false, defaultValue = "10") int limit,
@@ -65,7 +82,7 @@ public class ProductController {
 
     // Category
     @GetMapping("/categories")
-    public List<Category> category_list( ) {
+    public List<Category> categoryList( ) {
         return categoryService.list();
     }
 
@@ -79,6 +96,8 @@ public class ProductController {
     public List<ProductDTO> readName_category(@PathVariable("categoryName") String categoryName){
         return productService.listByCategoryName(categoryName);
     }
+
+
 
 
 

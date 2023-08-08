@@ -27,7 +27,8 @@ public class Product {
     @Column(name = "DESCRIPTION", length = 2000)
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL) 삭제시에도 영향을 미침
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "CATEGORY_ID", nullable=false)
     private Category category;
 //    @ManyToMany(cascade = CascadeType.ALL)

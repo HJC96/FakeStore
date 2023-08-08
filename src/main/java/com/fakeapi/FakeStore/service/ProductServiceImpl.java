@@ -9,6 +9,7 @@ import com.fakeapi.FakeStore.dto.ProductDTO;
 import com.fakeapi.FakeStore.repository.CategoryRepository;
 import com.fakeapi.FakeStore.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,7 +23,7 @@ import java.util.Optional;
 
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor @Log4j2
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
@@ -102,5 +103,44 @@ public class ProductServiceImpl implements ProductService {
                 .dtoList(result.toList())
                 .total((int)result.getTotalElements())
                 .build();
+    }
+
+    @Override
+    public ProductDTO update(Long id, ProductDTO productDTO) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        Optional<Category> optionalCategory = categoryRepository.findByName(productDTO.getCategory());
+
+        if(optionalProduct.isPresent()){
+            // modelMapper가 예상대로 동작하지 않음. 수동 매핑
+            // modelMapper.map(productDTO, Product.class);
+            Product product = optionalProduct.get();
+            product.setTitle(productDTO.getTitle());
+            product.setPrice(productDTO.getPrice());
+            product.setDescription(productDTO.getDescription());
+            product.setImage(productDTO.getimage());
+            product.setCategory(optionalCategory.get());
+            product.setRating(productDTO.getRating());
+            productRepository.save(product);
+
+            ProductDTO updatedProductDTO = modelMapper.map(product,ProductDTO.class);
+            updatedProductDTO.setCategory(optionalCategory.get().getName());
+            return updatedProductDTO;
+        }else{
+            throw new RuntimeException("Product not found");
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+
+        if(!optionalProduct.isPresent()){
+            throw new RuntimeException("Product not found");
+        }
+        // Product와 연결된 Category에 대한 외래키 제약 조건이 있음. 이것 때문에 삭제가 되지 않아 추가한 로직.
+        // -> product의 category가 null값을 허용하도록 바꾸기보다는, cascade = {CascadeType.PERSIST, CascadeType.MERGE} 으로 변경
+//        optionalProduct.get().setCategory(null);
+//        productRepository.save(optionalProduct.get());
+        productRepository.deleteById(id);
     }
 }

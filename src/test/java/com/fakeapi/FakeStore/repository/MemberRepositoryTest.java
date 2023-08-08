@@ -23,7 +23,7 @@ class MemberRepositoryTest {
     private MemberRepository memberRepository;
 
     @Test
-    public void Member_Sign(){
+    public void MemberSign(){
 
 //        Member member = new Member();
 //        member.setEmail("gkswlcjs2@naver.com");
