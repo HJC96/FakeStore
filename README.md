@@ -132,6 +132,11 @@ curl --location --request PATCH 'localhost:8080/products/{id}' \
 	"category": "electronic"
 }'
 ~~~
+**제품 삭제**
+~~~terminal
+curl --location --request DELETE 'localhost:8080/products/{id}'
+--header 'Content-Type: application/json'
+~~~
 ### Member
 **회원가입**
 ~~~terminal
