@@ -178,7 +178,7 @@ curl --location --request DELETE 'http://localhost:8080/members/logout' \
 ~~~
 **리프레시 토큰**
 ~~~terminal
-curl --location 'http://localhost:8080/members/refreshToken' \
+curl --location --request POST 'http://localhost:8080/members/refreshToken' \
 --header 'Content-Type: application/json' \
 --data '{
 	"refreshToken" : "리프래시토큰"
