@@ -77,7 +77,7 @@ curl --location --request GET 'localhost:8080/products?page={pageNumber}' \
 curl --location --request GET 'localhost:8080/products/{id}' \
 --header 'Content-Type: application/json'
 ~~~
-**제품 가져오기(특정 개수)**
+**단일 제품 가져오기(특정 개수)**
 ~~~terminal
 curl --location --request GET 'localhost:8080/products?limit={num} \
 --header 'Content-Type: application/json'
@@ -137,6 +137,20 @@ curl --location --request PATCH 'localhost:8080/products/{id}' \
 curl --location --request DELETE 'localhost:8080/products/{id}'
 --header 'Content-Type: application/json'
 ~~~
+
+### Cart
+**모든 카트 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/carts' \
+--header 'Content-Type: application/json'
+~~~
+**단일 카트 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/carts/{id}' \
+--header 'Content-Type: application/json'
+~~~
+
+
 ### Member
 **회원가입**
 ~~~terminal
