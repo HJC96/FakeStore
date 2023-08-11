@@ -21,6 +21,10 @@ public interface CartService {
 
     Cart register(CartDTO cartDTO);
 
+    CartDTO update(Long id, CartDTO cartDTO) ;
+
+    public void delete(Long id);
+
 }
 
 

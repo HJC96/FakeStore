@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,5 +67,19 @@ public class CartController {
         return cartService.register(cartDTO);
     }
 
+    @PutMapping("/{id}") // PUT은 일반적으로 리소스 전체를 업데이트 하는데 사용
+    public CartDTO updatePut(@PathVariable("id") Long id, @RequestBody @Valid CartDTO cartDTO){
+        return cartService.update(id, cartDTO);
+    }
 
+    @PatchMapping("{id}") // PATCH는 일반적으로 리소스 일부를 업데이트 하는데 사용
+    public CartDTO updatePatch(@PathVariable("id") Long id, @RequestBody @Valid CartDTO cartDTO){
+        return cartService.update(id, cartDTO);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id){
+        cartService.delete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
