@@ -4,10 +4,7 @@ import com.fakeapi.FakeStore.domain.Cart;
 import com.fakeapi.FakeStore.domain.CartItem;
 import com.fakeapi.FakeStore.domain.Category;
 import com.fakeapi.FakeStore.domain.Product;
-import com.fakeapi.FakeStore.dto.CartDTO;
-import com.fakeapi.FakeStore.dto.CartItemDTO;
-import com.fakeapi.FakeStore.dto.PageRequestDTO;
-import com.fakeapi.FakeStore.dto.PageResponseDTO;
+import com.fakeapi.FakeStore.dto.*;
 import com.fakeapi.FakeStore.repository.CartItemRepository;
 import com.fakeapi.FakeStore.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
@@ -79,9 +76,37 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public CartDTO update(Long id, CartDTO cartDTO) {
-//        Optional<Cart> optionalCart = cartRepository.findById(id);
-//        Optional<CartItem> optionalCartItem = cartItemRepository.findById();
-        return null;
+        Optional<Cart> optionalCart = cartRepository.findById(id);
+
+        if(optionalCart.isPresent()){
+//            Cart cart = modelMapper.map(cartDTO,Cart.class);
+            Cart cart = optionalCart.get();
+            cart.setUserId(cartDTO.getUserId());
+            cart.setDate(cartDTO.getDate());
+
+            List<CartItem> cartItemList = new ArrayList<>();
+            for(CartItemDTO cartItemDTO:cartDTO.getProducts()){
+//                CartItem cartItem = modelMapper.map(cartItemDTO,CartItem.class);
+
+                CartItem cartItem = new CartItem();
+                cartItem.setProductId(cartItemDTO.getProductId());
+                cartItem.setQuantity(cartItemDTO.getQuantity());
+                cartItem.setCart(cart);
+                cartItemList.add(cartItem);
+            }
+            List<CartItem> cartItems = cartItemRepository.findAllByCartId(cartDTO.getId());
+            for(CartItem c:cartItems)
+                cartItemRepository.delete(c);
+            cart.setProducts(cartItemList);
+
+            cartRepository.save(cart);
+
+            CartDTO updatedCartDTO = modelMapper.map(cart,CartDTO.class);
+            updatedCartDTO.setProducts(cartDTO.getProducts());
+            return updatedCartDTO;
+        }else {
+            throw new RuntimeException("Cart not found");
+        }
     }
 
     @Override
