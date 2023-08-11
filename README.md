@@ -77,9 +77,9 @@ curl --location --request GET 'localhost:8080/products?page={pageNumber}' \
 curl --location --request GET 'localhost:8080/products/{id}' \
 --header 'Content-Type: application/json'
 ~~~
-**단일 제품 가져오기(특정 개수)**
+**제품 가져오기(특정 개수)**
 ~~~terminal
-curl --location --request GET 'localhost:8080/products?limit={num} \
+curl --location --request GET 'localhost:8080/products?limit={num}' \
 --header 'Content-Type: application/json'
 ~~~
 **결과 정렬 하기(asc/desc)**
@@ -147,6 +147,75 @@ curl --location --request GET 'localhost:8080/carts' \
 **단일 카트 가져오기**
 ~~~terminal
 curl --location --request GET 'localhost:8080/carts/{id}' \
+--header 'Content-Type: application/json'
+~~~
+
+**카트 가져오기(특정 개수)**
+~~~terminal
+curl --location --request GET 'localhost:8080/carts?limit={num}' \
+--header 'Content-Type: application/json'
+~~~
+**결과 정렬 하기(asc/desc)**
+~~~terminal
+curl --location --request GET 'localhost:8080/carts?sort=desc' \
+--header 'Content-Type: application/json'
+~~~
+
+
+**새로운 제품 추가**
+~~~terminal
+curl --location --request POST 'localhost:8080/carts' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": 1,
+    "userId": 2,
+    "date": "2020-03-01T00:00:00.000Z",
+    "products": [
+      {
+        "productId": 1,
+        "quantity": 2
+      },
+      {
+        "productId": 9,
+        "quantity": 1
+      }
+    ]
+}'
+~~~
+**제품 업데이트(PUT/PATCH)**
+~~~terminal
+curl --location --request PUT 'localhost:8080/carts/{id}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": 3,
+    "userId": 8,
+    "date": "2020-03-01T00:00:00.000Z",
+    "products": [
+        {
+            "productId": 18,
+            "quantity": 1
+        }
+    ]
+}'
+~~~
+~~~terminal
+curl --location --request PATCH 'localhost:8080/carts/{id}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": 3,
+    "userId": 8,
+    "date": "2020-03-01T00:00:00.000Z",
+    "products": [
+        {
+            "productId": 18,
+            "quantity": 1
+        }
+    ]
+}'
+~~~
+**제품 삭제**
+~~~terminal
+curl --location --request DELETE 'localhost:8080/carts/{id}'
 --header 'Content-Type: application/json'
 ~~~
 
