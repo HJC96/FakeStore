@@ -22,7 +22,7 @@ public interface ProductService {
 
     PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO);
 
-    PageResponseDTO<ProductDTO> listWithLimit(PageRequestDTO pageRequestDTO, int limit);
+    PageResponseDTO<ProductDTO> listWithLimitProduct(PageRequestDTO pageRequestDTO, int limit);
     ProductDTO update(Long id, ProductDTO productDTO) ;
     void delete(Long id) ;
 

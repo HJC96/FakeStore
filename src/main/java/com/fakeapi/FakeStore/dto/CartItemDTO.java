@@ -1,8 +1,11 @@
 package com.fakeapi.FakeStore.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
+@Data @AllArgsConstructor
+@NoArgsConstructor
 public class CartItemDTO {
 
     private Long productId;

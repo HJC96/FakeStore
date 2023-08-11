@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .requestMatchers(DELETE,  "/products/**").permitAll()
                         .requestMatchers(POST, "/products/**").permitAll() // test
                         .requestMatchers(GET, "/carts/**").permitAll()
+                        .requestMatchers(POST, "/carts/**").permitAll()
                         .requestMatchers(GET,"/**").hasAnyRole( "USER")
                         .requestMatchers(POST,"/**").hasAnyRole("USER", "ADMIN")
 //                        .mvcMatchers( "/members/signup", "/members/login", "/members/refreshToken").permitAll() // Spring boot 2.7.*

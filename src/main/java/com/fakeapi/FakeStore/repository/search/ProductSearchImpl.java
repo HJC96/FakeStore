@@ -66,7 +66,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
                 product.price,
                 product.description,
 //                product.category.name
-                category.name.as("category"),
+                category.name,
                 product.image,
                 product.rating
         ));

@@ -15,4 +15,8 @@ public class CartDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime date;
     private List<CartItemDTO> products = new ArrayList<>();
+
+//    public void addProduct(CartItemDTO cartItemDTO){
+//        products.add(cartItemDTO);
+//    }
 }

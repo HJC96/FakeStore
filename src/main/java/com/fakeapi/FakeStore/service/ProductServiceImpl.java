@@ -86,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageResponseDTO<ProductDTO> listWithLimit(PageRequestDTO pageRequestDTO, int limit) {
+    public PageResponseDTO<ProductDTO> listWithLimitProduct(PageRequestDTO pageRequestDTO, int limit) {
         // pageRequestDTO.setSize(limit);
         Pageable pageableWithLimit = pageRequestDTO.getPageableWithLimit(limit);
         Page<Product> productPage = productRepository.findAll(pageableWithLimit);

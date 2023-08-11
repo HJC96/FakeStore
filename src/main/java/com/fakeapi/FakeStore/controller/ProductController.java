@@ -55,7 +55,7 @@ public class ProductController {
             @RequestParam(value="limit",required = false, defaultValue = "10") int limit,
             PageRequestDTO pageRequestDTO){
         if(limit > 0)
-            return productService.listWithLimit(pageRequestDTO, limit);
+            return productService.listWithLimitProduct(pageRequestDTO, limit);
         else
             return productService.list(pageRequestDTO);
     }
@@ -96,10 +96,4 @@ public class ProductController {
     public List<ProductDTO> readName_category(@PathVariable("categoryName") String categoryName){
         return productService.listByCategoryName(categoryName);
     }
-
-
-
-
-
-
 }
