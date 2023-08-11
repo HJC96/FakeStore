@@ -162,7 +162,7 @@ curl --location --request GET 'localhost:8080/carts?sort=desc' \
 ~~~
 
 
-**새로운 제품 추가**
+**새로운 카트 추가**
 ~~~terminal
 curl --location --request POST 'localhost:8080/carts' \
 --header 'Content-Type: application/json' \
@@ -182,9 +182,9 @@ curl --location --request POST 'localhost:8080/carts' \
     ]
 }'
 ~~~
-**제품 업데이트(PUT/PATCH)**
+**카트 업데이트(PUT/PATCH)**
 ~~~terminal
-curl --location --request PUT 'localhost:8080/carts/{id}' \
+curl --location --request PUT 'localhost:8080/carts/3' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": 3,
@@ -199,7 +199,7 @@ curl --location --request PUT 'localhost:8080/carts/{id}' \
 }'
 ~~~
 ~~~terminal
-curl --location --request PATCH 'localhost:8080/carts/{id}' \
+curl --location --request PATCH 'localhost:8080/carts/3' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": 3,
@@ -213,7 +213,7 @@ curl --location --request PATCH 'localhost:8080/carts/{id}' \
     ]
 }'
 ~~~
-**제품 삭제**
+**카트 삭제**
 ~~~terminal
 curl --location --request DELETE 'localhost:8080/carts/{id}'
 --header 'Content-Type: application/json'
