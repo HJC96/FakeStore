@@ -15,6 +15,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -154,5 +156,22 @@ public class CartServiceImpl implements CartService{
         }
 
         cartRepository.deleteById(id);
+    }
+
+    @Override
+    public PageResponseDTO<CartDTO> listWithDateRange(PageRequestDTO pageRequestDTO, LocalDateTime startDate, LocalDateTime endDate) {
+        Pageable pageable = pageRequestDTO.getPageable();
+        Page<Cart> cart = cartRepository.findAllByDateBetween(startDate, endDate, pageable);
+
+        List<CartDTO> cartDTOList = new ArrayList<>();
+        for(Cart c:cart.getContent()) {
+            CartDTO cartDTO = modelMapper.map(c, CartDTO.class);
+            cartDTOList.add(cartDTO);
+        }
+        return PageResponseDTO.<CartDTO>builder()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(cartDTOList)
+                .total((int)cart.getTotalElements())
+                .build();
     }
 }

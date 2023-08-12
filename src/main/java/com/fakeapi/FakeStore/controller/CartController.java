@@ -16,6 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @RestController
 @RequiredArgsConstructor
 @Validated
@@ -81,5 +84,18 @@ public class CartController {
     public ResponseEntity delete(@PathVariable("id") Long id){
         cartService.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+
+    @GetMapping(params = {"startdate", "enddate"})
+    public PageResponseDTO<CartDTO> listFilteredCarts(@RequestParam(value="startdate") String start,
+            @RequestParam(value="enddate") String end,
+            PageRequestDTO pageRequestDTO) {
+
+        LocalDateTime startDate = LocalDate.parse(start).atStartOfDay(); // 여기서 변환
+        LocalDateTime endDate = LocalDate.parse(end).plusDays(1).atStartOfDay(); // 다음 날의 시작 시간까지 포함
+
+
+        return cartService.listWithDateRange(pageRequestDTO, startDate, endDate);
     }
 }

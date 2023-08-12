@@ -8,6 +8,8 @@ import com.fakeapi.FakeStore.dto.ProductDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,6 +26,11 @@ public interface CartService {
     CartDTO update(Long id, CartDTO cartDTO) ;
 
     public void delete(Long id);
+
+
+
+
+    PageResponseDTO<CartDTO>  listWithDateRange(PageRequestDTO pageRequestDTO, LocalDateTime startDate, LocalDateTime endDate);
 
 }
 
