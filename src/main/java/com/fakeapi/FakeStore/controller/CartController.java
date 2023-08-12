@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -97,5 +98,11 @@ public class CartController {
 
 
         return cartService.listWithDateRange(pageRequestDTO, startDate, endDate);
+    }
+
+
+    @GetMapping("/user/{id}")
+    public List<CartDTO> readUserCart(@PathVariable("id") Long id){
+        return cartService.readUserCart(id);
     }
 }

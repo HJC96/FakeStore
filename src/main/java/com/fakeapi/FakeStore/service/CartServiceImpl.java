@@ -61,19 +61,29 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public Cart register(CartDTO cartDTO) {
-        Cart cart = modelMapper.map(cartDTO, Cart.class);
+//        Cart cart = modelMapper.map(cartDTO, Cart.class); //modelMapper 사용시, 사용 인스턴스가 detached 될 수 있음
+        Cart cart = new Cart();
+        cart.setDate(cartDTO.getDate());
+        cart.setUserId(cartDTO.getUserId());
         List<CartItem> cartItemList = new ArrayList<>();
 
         for(CartItemDTO cartItemDTO : cartDTO.getProducts()){
             log.info(cartItemDTO.getProductId());
             log.info(cartItemDTO.getQuantity());
-            CartItem cartItem = modelMapper.map(cartItemDTO, CartItem.class);
-            cartItem.setCart(cart); // Set the cart for each cart item
+//            CartItem cartItem = modelMapper.map(cartItemDTO, CartItem.class); //modelMapper 사용시, 사용 인스턴스가 detached 될 수 있음
+            CartItem cartItem = new CartItem();
+            cartItem.setProductId(cartItemDTO.getProductId());
+            cartItem.setQuantity(cartItemDTO.getQuantity());
+            cartItem.setCart(cart);
+//            cartItem.setCart(cart); // Set the cart for each cart item
             cartItemList.add(cartItem);
         }
-
+        log.info("---------------------------0");
         cart.setProducts(cartItemList);
-        return cartRepository.save(cart); // This should save both Cart and CartItems because of CascadeType.ALL
+        log.info("---------------------------1");
+        Cart c = cartRepository.save(cart); // This should save both Cart and CartItems because of CascadeType.ALL
+        log.info("---------------------------2");
+        return c;
     }
 
     @Override
@@ -173,5 +183,23 @@ public class CartServiceImpl implements CartService{
                 .dtoList(cartDTOList)
                 .total((int)cart.getTotalElements())
                 .build();
+    }
+
+    @Override
+    public List<CartDTO> readUserCart(Long id) {
+        List<Cart> cartList = cartRepository.findAllByUserId(id);
+        List<CartDTO> updatedCartDTO = new ArrayList<>();
+        for(Cart cart:cartList) {
+            CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
+            List<CartItemDTO> cartItemDTOList = new ArrayList<>();
+            for (CartItem cartItem : cart.getProducts()) {
+                CartItemDTO cartItemDTO = modelMapper.map(cartItem, CartItemDTO.class);
+                cartItemDTOList.add(cartItemDTO);
+            }
+            cartDTO.setProducts(cartItemDTOList);
+            updatedCartDTO.add(cartDTO);
+        }
+
+        return updatedCartDTO;
     }
 }

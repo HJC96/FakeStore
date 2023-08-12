@@ -23,6 +23,8 @@ public interface CartRepository extends JpaRepository<Cart, Long> , CartSearch {
     Page<Cart> findAll(Pageable pageable);
     Page<Cart> findAllByDateBetween(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
+    List<Cart> findAllByUserId(Long userId);
+
 
 
 

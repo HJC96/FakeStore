@@ -27,11 +27,9 @@ public interface CartService {
 
     public void delete(Long id);
 
-
-
-
     PageResponseDTO<CartDTO>  listWithDateRange(PageRequestDTO pageRequestDTO, LocalDateTime startDate, LocalDateTime endDate);
 
+    List<CartDTO> readUserCart(Long id);
 }
 
 
