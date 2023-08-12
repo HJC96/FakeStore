@@ -162,7 +162,7 @@ curl --location --request GET 'localhost:8080/carts?sort=desc' \
 ~~~
 
 
-**데이터 범위 안의 카트 가져오기**
+**날짜 범위 안의 카트 가져오기**
 ~~~terminal
 curl --location --request GET 'localhost:8080/carts?startdate=2019-12-10&enddate=2020-10-10'
 ~~~
