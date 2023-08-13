@@ -3,6 +3,7 @@ package com.fakeapi.FakeStore.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,16 @@ public class JwtTokenizerTest {
     String accessSecret;
     public final Long ACCESS_TOKEN_EXPIRE_COUNT = 30*60*1000L;
 
+    private static String JwtToken;
+
+
     @Test
+    public void createAndParseToken() throws Exception {
+        createToken();
+        parseToken();
+    }
+//    @Test
+//    @Order(1) // 첫 번째로 실행될 테스트 메서드
     public void createToken() throws Exception{
         String email = "gkswlcjs2@naver.com";
         List<String> roles = List.of("ROLE_USER");
@@ -29,7 +39,7 @@ public class JwtTokenizerTest {
 
         byte[] accessSecret = this.accessSecret.getBytes(StandardCharsets.UTF_8);
 
-        String JwtToken = Jwts.builder()
+        JwtToken = Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + this.ACCESS_TOKEN_EXPIRE_COUNT))
@@ -39,16 +49,18 @@ public class JwtTokenizerTest {
         System.out.println(JwtToken);
     }
 
-    @Test
+
+//    @Test
+//    @Order(2) // 첫 번째로 실행될 테스트 메서드
     public void parseToken() throws Exception{
         byte[] accessSecret = this.accessSecret.getBytes(StandardCharsets.UTF_8);
-        //use jwtToken that created from the above code
-        String jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJna3N3bGNqczJAbmF2ZXIuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sIm1lbWJlcklkIjoxLCJpYXQiOjE2OTE4OTQ4NDUsImV4cCI6MTY5MTg5NjY0NX0.xJ7It4ifi18R4LX-8mhFSN9bjDEJEc6TB2-GxIsKXZc";
+        //use JwtToken that created from the above code
+//        String JwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJna3N3bGNqczJAbmF2ZXIuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sIm1lbWJlcklkIjoxLCJpYXQiOjE2OTE4OTQ4NDUsImV4cCI6MTY5MTg5NjY0NX0.xJ7It4ifi18R4LX-8mhFSN9bjDEJEc6TB2-GxIsKXZc";
 
         Claims claims = Jwts.parserBuilder() // JwtParserBuilder를 반환.
                 .setSigningKey(Keys.hmacShaKeyFor(accessSecret))
                 .build()
-                .parseClaimsJws(jwtToken)
+                .parseClaimsJws(JwtToken)
                 .getBody();
         System.out.println(claims.getSubject());
         System.out.println(claims.get("roles"));
