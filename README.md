@@ -42,22 +42,19 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 
 
 ## ERD 설계
-
 <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4">
-
 <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/3347816a-6e3d-41c4-9f75-4e0e7748e142">
-
 <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/5db3c664-ceed-40bf-bd74-4a9216d89374">
-
-## API overview
-<!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
-<img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c">
 
 ## Sample Data
 다음의 데이터를 추가해주세요.
 - Products https://fakestoreapi.com/products
 - Carts https://fakestoreapi.com/carts
 
+## API overview
+<!-- <img width="644" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/ad9c3c76-7219-46ee-a33d-dcfecbc2b008"> -->
+<!-- <img width="806" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/93387252-0b42-4b3b-a672-8d90895c818c"> -->
+<img width="731" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/7938ee4b-1b02-45f6-909a-52644965112d">
 
 ## Example Code
 
@@ -165,6 +162,11 @@ curl --location --request GET 'localhost:8080/carts?sort=desc' \
 **날짜 범위 안의 카트 가져오기**
 ~~~terminal
 curl --location --request GET 'localhost:8080/carts?startdate=2019-12-10&enddate=2020-10-10'
+~~~
+
+**User의 카트 가져오기**
+~~~terminal
+curl --location --request GET 'localhost:8080/carts/user/{userId}'
 ~~~
 
 **새로운 카트 추가**
