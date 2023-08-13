@@ -54,8 +54,8 @@ class ProductRepositoryTest {
         Product savedProduct = productRepository.save(product);
 
         // Flush changes and re-load savedProduct
-        productRepository.flush();
-        savedProduct = productRepository.findById(savedProduct.getId()).orElse(null);
+//        productRepository.flush();
+//        savedProduct = productRepository.findById(savedProduct.getId()).orElse(null);
 
 //        // Change the title of the product
 //        product.setTitle("test");
