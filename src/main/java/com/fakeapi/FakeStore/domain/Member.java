@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-//@Table(name = "MEMBER")
+@Table(name = "MEMBER")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +24,13 @@ public class Member {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "MEMBER_NAME")
+    @Column(name = "NAME")
     private String name;
 
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "DATETIME")
+    @Column(name = "REGDATE")
     @CreationTimestamp // 현재시간이 저장될 때 자동으로 생성.
     private LocalDateTime date;
 

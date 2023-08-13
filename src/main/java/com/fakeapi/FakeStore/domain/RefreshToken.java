@@ -11,9 +11,11 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @Setter @Getter
 public class RefreshToken {
-    @Id
+    @Id @Column(name="REFRESHTOKEN_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="REFRESHTOKEN_MEMBER_ID")
     private Long memberId;
+    @Column(name="REFRESHTOKEN_VALUE")
     private String value;
 }

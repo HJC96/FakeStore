@@ -25,7 +25,7 @@ public class Cart {
     @Column(name = "CART_DATE")
     private LocalDateTime date;
 
-    @Column(name = "CART_PRODUCT")
+//    @Column(name = "CART_PRODUCT")
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> products = new ArrayList<>();
 
