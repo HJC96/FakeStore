@@ -42,10 +42,13 @@ Java와 SpringBoot를 이용하여 가상의 온라인 상점 API를 구현했�
 
 
 ## ERD 설계
-<!-- <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4"> -->
+
+<img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/87514474-72db-4639-a8d6-4f1ead9d30ac">
+<!--
+ <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/11abc907-c7f9-44a0-b7cc-158e356435a4"> 
 
 <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/3384cc75-82dd-41b9-bb84-946b5be6400a">
-
+-->
 
 <img width="600" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/3347816a-6e3d-41c4-9f75-4e0e7748e142">
 <img width="300" alt="image" src="https://github.com/HJC96/FakeStore/assets/87226129/bec87fef-2229-429d-aeeb-f41cfc036825">
