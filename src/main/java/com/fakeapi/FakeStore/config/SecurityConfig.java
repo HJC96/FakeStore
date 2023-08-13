@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(httpRequests -> httpRequests
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll() // Preflight 요청은 허용한다. https://velog.io/@jijang/%EC%82%AC%EC%A0%84-%EC%9A%94%EC%B2%AD-Preflight-request
                         .requestMatchers( "/members/signup", "/members/login", "/members/refreshToken").permitAll()
+                        .requestMatchers("/swagger-ui/*", "/v3/*").permitAll()
                         .requestMatchers(GET,  "/products/**", "/carts/**").permitAll()
                         .requestMatchers(PUT,  "/products/**", "/carts/**").permitAll()
                         .requestMatchers(PATCH,  "/products/**", "/carts/**").permitAll()
