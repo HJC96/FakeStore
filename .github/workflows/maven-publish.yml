@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest 
     # 권한 설정
     permissions:
-      checks: write
+      checks: write # 테스트 결과를 publish 하므로 권한 필요
       contents: read
       packages: write
 
