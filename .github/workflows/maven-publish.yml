@@ -20,6 +20,8 @@ jobs:
     permissions: 
       contents: read
       packages: write
+      actions: write
+
     # 환경 변수 설정
     env: 
       SPRING_DATASOURCE_URL: jdbc:mariadb://localhost:3306/fakestore
