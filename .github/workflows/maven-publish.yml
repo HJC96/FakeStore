@@ -34,7 +34,7 @@ jobs:
     # MariaDB 컨테이너 실행
     - name: Run MariaDB container
       run: |
-        docker run --name mariadb --network my_network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fakestore -e MYSQL_USER=storeuser -e MYSQL_PASSWORD=storeuser -p 3306:3306 -d mariadb:10.4.10 
+        docker run --name mariadb --network my_network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=fakestore -e MYSQL_USER=storeuser -e MYSQL_PASSWORD=storeuser -p 3306:3306 -d mariadb:11.0.2 
     # 저장소 체크아웃
     - uses: actions/checkout@v3 
     # JDK 11 설정 -> 17
