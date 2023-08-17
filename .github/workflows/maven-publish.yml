@@ -58,4 +58,4 @@ jobs:
       if: always() # 이 액션을 항상 실행하도록 설정, 실패한 경우에도
       with:
         files: ./build/test-results/test/*.xml
-        github_token: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN_SECRET }}
+        github_token: ${{ secrets.JC_TOKEN }}
