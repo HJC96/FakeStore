@@ -52,3 +52,9 @@ jobs:
     # Maven을 사용하여 패키지 빌드
     - name: Build with Maven
       run: mvn -B package --file pom.xml -Ptest 
+      
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always() # 이 액션을 항상 실행하도록 설정, 실패한 경우에도
+      with:
+        files: ./build/test-results/test/*.xml
