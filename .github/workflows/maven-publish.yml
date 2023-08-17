@@ -17,10 +17,10 @@ jobs:
     # 운영체제 설정
     runs-on: ubuntu-latest 
     # 권한 설정
-    permissions: 
+    permissions:
+      checks: write
       contents: read
       packages: write
-      actions: write
 
     # 환경 변수 설정
     env: 
@@ -60,4 +60,3 @@ jobs:
       if: always() # 이 액션을 항상 실행하도록 설정, 실패한 경우에도
       with:
         files: ./build/test-results/test/*.xml
-        github_token: ${{ secrets.GITHUB_TOKEN }}
