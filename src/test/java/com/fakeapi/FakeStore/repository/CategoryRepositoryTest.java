@@ -32,4 +32,5 @@ class CategoryRepositoryTest {
         Category savedCategory = categoryRepository.save(category);
         assertNotNull(savedCategory.getId());
     }
+
 }
