@@ -40,7 +40,6 @@ public class MemberController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-
         Member saveMember = memberService.addMember(memberSignUpDTO);
 
         MemberSignUpResponseDTO memberSignupResponseDTO = new MemberSignUpResponseDTO();
