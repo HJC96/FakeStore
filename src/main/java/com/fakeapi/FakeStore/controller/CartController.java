@@ -30,11 +30,6 @@ public class CartController {
     @Autowired
     private final CartService cartService;
 
-//    @GetMapping
-//    public List<CartDTO> cartList(){
-//        return cartService.list();
-//    }
-//
     @GetMapping("/{id}")
     public CartDTO read(@PathVariable("id") Long id){
         log.info("read id: "+ id);

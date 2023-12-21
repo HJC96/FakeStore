@@ -29,14 +29,6 @@ public class PageRequestDTO {
 
     private String sort;
 
-//    //추가된 내용들
-//    private LocalDate from;
-//
-//    private LocalDate to;
-//
-//    private Boolean completed;
-
-
     public String[] getTypes(){
         if(type == null || type.isEmpty()){
             return null;

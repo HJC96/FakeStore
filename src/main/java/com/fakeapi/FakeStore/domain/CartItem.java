@@ -17,9 +17,10 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    CartItem에서 Cart를 참조할 일은 없을 것 같아, 해당 내용 주석처리-> 그런데 주석처리하면 매핑이 안됨.
+
     @ManyToOne
-    @JoinColumn(name = "CART_ID") @JsonIgnore // Cart는 여러 CartItem을 참조하고, 각 CartItem도 Cart를 참조할 때 이 문제가 발생, cartItem을 통해 cart를 조회할 일은 없으므로 JsonIgnore
+    @JoinColumn(name = "CART_ID")
+    @JsonIgnore // Cart는 여러 CartItem을 참조하고, 각 CartItem도 Cart를 참조할 때 이 문제가 발생, cartItem을 통해 cart를 조회할 일은 없으므로 JsonIgnore
     private Cart cart;
 
 //      상품이 판매 중단되면 그 정보는 상품(Product) 테이블에서 삭제되게 됩니다. 그런데 만약 CartItem이 Product를 직접 참조(FK, Foreign Key를 사용)하고 있었다면, 상품이 삭제될 때 해당 상품을 담고 있는 모든 장바구니(CartItem)의 정보도 같이 삭제되어야 하는 문제가 생깁니다. 이렇게 되면 장바구니 정보가 유실되거나 일관성이 깨질 수 있어요.

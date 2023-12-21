@@ -21,7 +21,4 @@ public class CartDTO {
     private LocalDateTime date;
     private List<CartItemDTO> products = new ArrayList<>();
 
-//    public void addProduct(CartItemDTO cartItemDTO){
-//        products.add(cartItemDTO);
-//    }
 }
